@@ -8,8 +8,8 @@ trainingSamples = 30;
 testSamples = 50 - trainingSamples;
 
 
-trainingData = zeros(numFeatures, 3*trainingSamples);
-trainingLabels = zeros(numClasses, 3*trainingSamples);
+trainingData = zeros(numFeatures, trainingSamples);
+trainingLabels = zeros(numClasses, trainingSamples);
 for i = 1:trainingSamples
     trainingData(:,i) = x1all(i,:)';
     trainingData(:,trainingSamples+i) = x2all(i,:)';
@@ -19,9 +19,6 @@ for i = 1:trainingSamples
     trainingLabels(:,2*trainingSamples+i) = [0;0;1];
 end
 
-trainingLabels1 = [ones(1,trainingSamples),zeros(1,2*trainingSamples);
-                   zeros(1,trainingSamples),ones(1,2*trainingSamples)];
+trainingLabels1 = zeros(2,
 
-
-
-weights = getPerceptronWeights(trainingData, trainingLabels1);
+weights = getPerceptronWeights(trainingData, trainingLabels);
