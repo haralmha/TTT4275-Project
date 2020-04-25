@@ -1,0 +1,19 @@
+function labels = perceptronClassification(weights1, weights2, weights3, testData)
+    testSamples = size(testData,2);
+    labels = zeros(3,testSamples);
+    g = zeros(2,3);
+    for i = 1:testSamples
+        g(:,1) = weights1(:,1:end-1)
+        g(:,2) = sigmoid(weights2,testData(:,i));
+        g(:,3) = sigmoid(weights3,testData(:,i));
+        if g(1,1) >= 0.5 && g(1,2) <= 0.5
+            labels(1,i) = 1;
+        else
+            if g(2,1) >= 0.5 && g(2,2) <= 0.5
+                labels(2,i) = 1;
+            else
+                labels(3,i) = 1;
+            end
+        end
+    end
+end

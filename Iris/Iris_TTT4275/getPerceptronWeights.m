@@ -6,7 +6,7 @@ function W = getPerceptronWeights(trainingData, trainingLabels)
     x = [trainingData;ones(1,size(trainingData,2))];
     g = sigmoid(W,x);
     iter = 0;
-    epsilon = 0.1;
+    epsilon = 0.01;
     mse = getMSE(g, trainingLabels);
     while iter < maxIter && mse > epsilon
         W = W - alpha*gradMSE(g, trainingLabels, x);
