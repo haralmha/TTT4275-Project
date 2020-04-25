@@ -1,5 +1,4 @@
 function weightMatrix = getPerceptronWeights(trainingData, trainingLabels)
-    N = size(trainingData,2);
     numFeatures = size(trainingData,1);
     numClasses = size(trainingLabels, 1);
     alpha = 0.01;
@@ -12,5 +11,10 @@ function weightMatrix = getPerceptronWeights(trainingData, trainingLabels)
         weightMatrix = weightMatrix - alpha*gradMSE(weightMatrix*trainingData, trainingLabels, trainingData);
         iter = iter + 1;
         mse = getMSE(weightMatrix*trainingData, trainingLabels);
+    end
+    if iter >= maxIter
+        fprintf("Maximum number of iterations reached.");
+    else
+        fprintf("MSE converged.");
     end
 end

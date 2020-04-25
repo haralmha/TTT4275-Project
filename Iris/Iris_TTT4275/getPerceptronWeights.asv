@@ -1,4 +1,4 @@
-function weightMatrix = getPerceptronWeights(trainingData, trainingLabels, numClasses)
+function weightMatrix = getPerceptronWeights(trainingData, trainingLabels)
     numFeatures = size(trainingData,1);
     numClasses = size(trainingLabels, 1);
     alpha = 0.01;
@@ -6,13 +6,14 @@ function weightMatrix = getPerceptronWeights(trainingData, trainingLabels, numCl
     weightMatrix = zeros(numClasses, numFeatures+1); % W = [W, w_o]
     iter = 0;
     epsilon = 0.001;
-    mse = 
-    while iter < maxIter
-        randIndex = randi(size(trainingData, 1));
-        if trainingData(randIndex, 2)*weightMatrix(1, 1)*trainingData(randIndex, 1)+weightMatrix(1, 2) <= 0
-            weightMatrix(1, 1) = weightMatrix(1, 1) + alpha*trainingData(randIndex, 1)*trainingData(randIndex, 2);
-            weightMatrix(1, 2) = weightMatrix(1, 2) + alpha*trainingData(randIndex, 2);
-        end
+    mse = getMSE(weightMatrix*trainingData, trainingLabels);
+    while iter < maxIter || mse > epsilon
+        weightMatrix = weightMatrix - alpha*gradMSE(weightMatrix*trainingData, trainingLabels, trainingData);
         iter = iter + 1;
+        mse = getMSE(weightMatrix*trainingData, trainingLabels);
     end
+    if iter >= maxIter
+        fprintf("Maximum number of iterations reached.");
+    else
+        fprintf("MSE converged.");
 end
