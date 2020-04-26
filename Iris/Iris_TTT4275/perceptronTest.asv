@@ -8,13 +8,19 @@ totSamples = 50;
 trainingSamples = 30;
 testSamples = totSamples - trainingSamples;
 
-%Takes out the 30 first rows of the whole data set
+% Extracts the 30 first rows of the data set
 trainingData = zeros(3*trainingSamples, numFeatures);
+trainingLabels = zeros(3*trainingSamples,1);
 for i = 1:trainingSamples
     trainingData(i,:) = x1all(i,:);
     trainingData(trainingSamples+i,:) = x2all(i,:);
     trainingData(2*trainingSamples+i,:) = x3all(i,:);
+    trainingLabels(i) = 1;
+    trainingLabels(trainingSamples+i) = 2;
+    trainingLabels(2*trainingSamples+i) = 3;
 end
+
+% Extracts the 20 last rows of the data set
 testData = zeros(3*testSamples, numFeatures);
 testLabels = zeros(3*testSamples,1);
 for i = 1:testSamples
@@ -26,28 +32,43 @@ for i = 1:testSamples
     testLabels(2*testSamples+i) = 3;
 end
 
+% Three labels to use for the "one vs all" approach
 trainingLabels1 = [ones(trainingSamples,1);zeros(2*trainingSamples,1)];
 trainingLabels2 = [zeros(trainingSamples,1);ones(trainingSamples,1);zeros(trainingSamples,1)];
 trainingLabels3 = [zeros(2*trainingSamples,1);ones(trainingSamples,1)];
 
+% The weights consists of coefficients for three hyperplanes for separating
+% one class from the rest (weights1 separates class 1 from the two others,
+% weights2 separates class 2, and weights 3 separates class 3).
 weights1 = getPerceptronWeights(trainingData, trainingLabels1);
 weights2 = getPerceptronWeights(trainingData, trainingLabels2);
 weights3 = getPerceptronWeights(trainingData, trainingLabels3);
 
+% Classifies the test set based on the features of each test sample and
+% the weight coefficients for the three hyperplanes.
 labels = perceptronClassification(weights1,weights2,weights3,testData);
-correct = 0;
-confusionMatrix = zeros(numClasses);
+labels2 = perceptronClassification(weights1,weights2,weights3,trainingData);
+
+
+testConfusionMatrix = zeros(numClasses);
 for i = 1:testSamples*numClasses
-    if labels(i) == testLabels(i)
-        correct = correct + 1;
-    end
-    confusionMatrix(testLabels(i),labels(i)) = confusionMatrix(testLabels(:i),labels(:,i))+1;
+    testConfusionMatrix(testLabels(i),labels(i)) = testConfusionMatrix(testLabels(i),labels(i))+1;
 end
-fprintf("Confusion matrix:\n");
+trainingConfusionMatrix = zeros(numClasses);
+for i = 1:trainingSamples*numClasses
+    trainingConfusionMatrix(trainingLabels(i),labels2(i)) = trainingConfusionMatrix(trainingLabels(i),labels2(i))+1;
+end
+fprintf("Confusion matrix for test set:\n");
 for i = 1:numClasses
     for j = 1:numClasses
-        fprintf("%i\t", confusionMatrix(i,j));
+        fprintf("%i\t", testConfusionMatrix(i,j));
     end
     fprintf("\n");
 end
-fprintf("Correct classifications = %d\n", correct);
+fprint
+for i = 1:numClasses
+    for j = 1:numClasses
+        fprintf("%i\t", trainingConfusionMatrix(i,j));
+    end
+    fprintf("\n");
+end
