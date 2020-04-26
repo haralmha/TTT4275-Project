@@ -8,6 +8,7 @@ totSamples = 50;
 trainingSamples = 30;
 testSamples = totSamples - trainingSamples;
 
+
 % Extracts the 30 first rows of the data set
 trainingData = zeros(3*trainingSamples, numFeatures);
 trainingLabels = zeros(3*trainingSamples,1);
