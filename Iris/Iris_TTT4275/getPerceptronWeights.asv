@@ -4,7 +4,7 @@ function W = getPerceptronWeights(trainingData, trainingLabels)
     maxIter = 10000;
     W = zeros(1, numFeatures+1); % W = [W, w_o]
     x = [trainingData;ones(1,size(trainingData,2))]; % x = [x',1]' (see 3.2 in compendium)
-    g = sigmoid(W,x); % 0 < g < 1
+    g = sigmoid(W,x); g 
     iter = 0;
     epsilon = 0.01; % Error threshold to break the loop if mse converges
     mse = getMSE(g, trainingLabels); % Minimum square error

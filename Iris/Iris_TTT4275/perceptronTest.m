@@ -8,7 +8,7 @@ totSamples = 50;
 trainingSamples = 30;
 testSamples = totSamples - trainingSamples;
 
-
+%Takes out the 30 first rows of the whole data set
 trainingData = zeros(numFeatures, 3*trainingSamples);
 for i = 1:trainingSamples
     trainingData(:,i) = x1all(i,:)';
