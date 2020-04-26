@@ -8,34 +8,83 @@ totSamples = 50;
 trainingSamples = 30;
 testSamples = totSamples - trainingSamples;
 
-% Extracts the 30 first rows of the data set
-trainingData = zeros(3*trainingSamples, numFeatures);
-trainingLabels = zeros(3*trainingSamples,1);
+%% Use this for training and testing with all features
+%trainingData = zeros(3*trainingSamples, numFeatures);
+%trainingLabels = zeros(3*trainingSamples,1);
+%testData = zeros(3*testSamples, numFeatures);
+%testLabels = zeros(3*testSamples,1);
 
-% Extracts the 20 last rows of the data set
-testData = zeros(3*testSamples, numFeatures);
-testLabels = zeros(3*testSamples,1);
+%% Use this for training and testing with 3 features (1,3,4)
+%x1all = [x1all(1,:) x1all(3,:)]
+%x2all =
+%x3all =
+%trainingData = zeros(3*trainingSamples, numFeatures-1);
+%trainingLabels = zeros(3*trainingSamples,1);
+%testData = zeros(3*testSamples, numFeatures-1);
+%testLabels = zeros(3*testSamples,1);
+
+%% Use this for training and testing with 2 features (3,4)
+%x1all =
+%x2all =
+%x3all =
+%trainingData = zeros(3*trainingSamples, numFeatures-2);
+%trainingLabels = zeros(3*trainingSamples,1);
+%testData = zeros(3*testSamples, numFeatures-2);
+%testLabels = zeros(3*testSamples,1);
+
+%% Use this for training and testing with 1 feature (3)
+%x1all =
+%x2all =
+%x3all =
+%trainingData = zeros(3*trainingSamples, numFeatures-3);
+%trainingLabels = zeros(3*trainingSamples,1);
+%testData = zeros(3*testSamples, numFeatures-3);
+%testLabels = zeros(3*testSamples,1);
 
 for k = 1:2
     
     if k == 1
-    for i = 1:trainingSamples
-        trainingData(i,:) = x1all(i,:);
-        trainingData(trainingSamples+i,:) = x2all(i,:);
-        trainingData(2*trainingSamples+i,:) = x3all(i,:);
-        trainingLabels(i) = 1;
-        trainingLabels(trainingSamples+i) = 2;
-        trainingLabels(2*trainingSamples+i) = 3;
+        fprintf('30 first for training, 20 last for testing\n');
+        % Extracts the 30 first rows of the data set into the training set
+        for i = 1:trainingSamples
+            trainingData(i,:) = x1all(i,:);
+            trainingData(trainingSamples+i,:) = x2all(i,:);
+            trainingData(2*trainingSamples+i,:) = x3all(i,:);
+            trainingLabels(i) = 1;
+            trainingLabels(trainingSamples+i) = 2;
+            trainingLabels(2*trainingSamples+i) = 3;
+        end
+        % Extracts the 20 last rows of the data set into the test set
+        for i = 1:testSamples
+            testData(i,:) = x1all(trainingSamples+i,:);
+            testData(testSamples+i,:) = x2all(trainingSamples+i,:);
+            testData(2*testSamples+i,:) = x3all(trainingSamples+i,:);
+            testLabels(i) = 1;
+            testLabels(testSamples+i) = 2;
+            testLabels(2*testSamples+i) = 3;
+        end
+    elseif k == 2
+        fprintf('\n\n30 last for training, 20 first for testing\n');
+        % Extracts the 30 last rows of the data set into the training set
+        for i = 1:trainingSamples
+            trainingData(i,:) = x1all(testSamples+i,:);
+            trainingData(trainingSamples+i,:) = x2all(testSamples+i,:);
+            trainingData(2*trainingSamples+i,:) = x3all(testSamples+i,:);
+            trainingLabels(i) = 1;
+            trainingLabels(trainingSamples+i) = 2;
+            trainingLabels(2*trainingSamples+i) = 3;
+        end
+        % Extracts the 20 first rows of the data set into the test set
+        for i = 1:testSamples
+            testData(i,:) = x1all(i,:);
+            testData(testSamples+i,:) = x2all(i,:);
+            testData(2*testSamples+i,:) = x3all(i,:);
+            testLabels(i) = 1;
+            testLabels(testSamples+i) = 2;
+            testLabels(2*testSamples+i) = 3;
+        end
     end
-
-    for i = 1:testSamples
-        testData(i,:) = x1all(trainingSamples+i,:);
-        testData(testSamples+i,:) = x2all(trainingSamples+i,:);
-        testData(2*testSamples+i,:) = x3all(trainingSamples+i,:);
-        testLabels(i) = 1;
-        testLabels(testSamples+i) = 2;
-        testLabels(2*testSamples+i) = 3;
-    end
+        
 
     % Three labels to use for the "one vs all" approach
     trainingLabels1 = [ones(trainingSamples,1);zeros(2*trainingSamples,1)];
