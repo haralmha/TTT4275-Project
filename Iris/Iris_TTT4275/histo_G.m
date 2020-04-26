@@ -28,6 +28,8 @@ hold on
 histogram(f1_c2);
 hold on 
 histogram(f1_c3);
+title('Feature 1 of class 1, 2 and 3')
+legend('Class1','Class2','Class3')
 
 %Histogram of feature 2
 %Shows most overlap
@@ -37,6 +39,8 @@ hold on
 histogram(f2_c2);
 hold on 
 histogram(f2_c3);
+title('Feature 2 of class 1, 2 and 3')
+legend('Class1','Class2','Class3')
 
 %Histogram of feature 3
 %Shows less overlap
@@ -46,6 +50,8 @@ hold on
 histogram(f3_c2);
 hold on 
 histogram(f3_c3);
+title('Feature 3 of class 1, 2 and 3')
+legend('Class1','Class2','Class3')
 
 %Histogram of feature 4
 %Show second less overlap
@@ -55,4 +61,6 @@ hold on
 histogram(f4_c2);
 hold on 
 histogram(f4_c3);
+title('Feature 4 of class 1, 2 and 3')
+legend('Class1','Class2','Class3')
 
