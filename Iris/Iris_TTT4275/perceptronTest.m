@@ -19,8 +19,8 @@ testData = zeros(numFeatures, 3*testSamples);
 testLabels = zeros(1, 3*testSamples);
 for i = 1:testSamples
     testData(:,i) = x1all(trainingSamples+i,:)';
-    testData(:,2*testSamples+i) = x2all(trainingSamples+i,:)';
-    testData(:,3*testSamples+i) = x3all(trainingSamples+i,:)';
+    testData(:,testSamples+i) = x2all(trainingSamples+i,:)';
+    testData(:,2*testSamples+i) = x3all(trainingSamples+i,:)';
     testLabels(:,i) = 1;
     testLabels(:,testSamples+i) = 2;
     testLabels(:,2*testSamples+i) = 3;
@@ -36,9 +36,18 @@ weights3 = getPerceptronWeights(trainingData, trainingLabels3);
 
 labels = perceptronClassification(weights1,weights2,weights3,testData);
 correct = 0;
-for i = 1:testSamples
+confusionMatrix = zeros(numClasses);
+for i = 1:testSamples*numClasses
     if labels(:,i) == testLabels(:,i)
         correct = correct + 1;
     end
+    confusionMatrix(testLabels(:,i),labels(:,i)) = confusionMatrix(testLabels(:,i),labels(:,i))+1;
+end
+fprintf("Confusion matrix:\n");
+for i = 1:numClasses
+    for j = 1:numClasses
+        fprintf("%i\t", confusionMatrix(i,j));
+    end
+    fprintf("\n");
 end
 fprintf("Correct classifications = %d\n", correct);
