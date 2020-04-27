@@ -9,11 +9,11 @@ trainingSamples = 30;
 testSamples = totSamples - trainingSamples;
 
 %% Use this for training and testing with all features
-%fprintf('Training and testing using all features\n')
-%trainingData = zeros(3*trainingSamples, numFeatures);
-%trainingLabels = zeros(3*trainingSamples,1);
-%testData = zeros(3*testSamples, numFeatures);
-%testLabels = zeros(3*testSamples,1);
+% fprintf('Training and testing using all features\n')
+% trainingData = zeros(3*trainingSamples, numFeatures);
+% trainingLabels = zeros(3*trainingSamples,1);
+% testData = zeros(3*testSamples, numFeatures);
+% testLabels = zeros(3*testSamples,1);
 
 %% Use this for training and testing with 3 features (1,3,4)
 % fprintf('Training and testing using feature 1,3,4\n')
