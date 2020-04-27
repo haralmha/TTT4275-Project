@@ -34,6 +34,7 @@ testSamples = totSamples - trainingSamples;
 % trainingLabels = zeros(3*trainingSamples,1);
 % testData = zeros(3*testSamples, numFeatures-2);
 % testLabels = zeros(3*testSamples,1);
+>>>>>>> fad9561197fb55d09e1b2ce165e9135bc2a99e65
 
 %% Use this for training and testing with 1 feature (3)
 fprintf('Training and testing using feature 3\n')
