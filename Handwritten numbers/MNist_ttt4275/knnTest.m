@@ -5,6 +5,7 @@ load('data_all.mat')
 chunk_size = 1000;
 num_train_chunks = num_train/chunk_size;
 
-for i = 1:num_train_chunks
-    
-end
+
+x = zeros(28,28);
+x(:)= testv(1,:);
+image(x)
