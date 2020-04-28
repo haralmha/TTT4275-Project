@@ -136,3 +136,10 @@ for k = 1:1
     end
 
 end
+test = zeros(10,1);
+for i = 1:num_test
+    test(testlab(i)+1) = test(testlab(i)+1) + 1;
+end
+for i = 1:10
+    disp(test(i));
+end
