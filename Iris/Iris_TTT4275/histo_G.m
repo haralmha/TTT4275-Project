@@ -54,7 +54,7 @@ title('Feature 3 of class 1, 2 and 3')
 legend('Class1','Class2','Class3')
 
 %Histogram of feature 4
-%Show second less overlap
+%Shows second less overlap
 figure(4)
 histogram(f4_c1);
 hold on 
