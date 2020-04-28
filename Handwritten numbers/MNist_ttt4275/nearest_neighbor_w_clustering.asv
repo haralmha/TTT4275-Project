@@ -1,0 +1,7 @@
+load('data_all.mat');
+
+
+for i = 1:10
+    class_indeces = find(trainv == i-1);
+    [idx(i),C(i)] = kmeans(trainv(),64);
+end
