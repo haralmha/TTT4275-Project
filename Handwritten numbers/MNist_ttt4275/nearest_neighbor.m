@@ -12,7 +12,7 @@ function test_labels = nearest_neighbor(template_vectors, template_labels, test_
         distances = dist(template_chunk,test_chunk');
         min_dist_indeces = find(min(distances) == distances);
         for i = 1:test_chunk_size
-            test_labels((chunk_index-1)*test_chunk_size+i) = template_labels(min_dist_indeces(i)-(i-1)*template_chunk_size);
+            test_labels((chunk_index-1)*test_chunk_size+i) = template_labels(min_dist_indeces(i)-(i-1)*template_chunk_size + (chunk_index-1)*template_chunk_size);
         end
     end
     
