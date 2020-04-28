@@ -1,6 +1,6 @@
 load('data_all.mat');
 
-classified_testlab = nearest_neighbor(trainv,trainlab,testv);
+classified_testlab = nearest_neighbor2(trainv,trainlab,testv);
 
 confusion_matrix = zeros(10);
 
