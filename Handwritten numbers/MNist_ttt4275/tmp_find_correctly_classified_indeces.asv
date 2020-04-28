@@ -1,0 +1,15 @@
+found_correct = 0;
+found_uncorrect = 0;
+while ~found_correct && ~found_uncorrect
+    i = randi(num_test);
+    if (classified_testlab(i) == testlab(i)) && ~found_correct
+        fprintf('%i:\t%i', i,classified_testlab(i))
+        found_correct = 1;
+    elseif (classified_testlab(i) ~= testlab(i)) && ~found_uncorrect
+        fprintf('%i:\t%i', i,classified_testlab(i))
+        found_uncorrect = 1;
+    end
+    if found_correct && found_uncorrect
+        break
+    end
+end

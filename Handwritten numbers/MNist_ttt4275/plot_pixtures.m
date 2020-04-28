@@ -1,8 +1,7 @@
 x = zeros(28,28);
-for i = 1:28
-    x(:) = testv(i,:);
-    figure(i)
-    image(x)
-end 
+x(:) = testv(9991,:);
+figure(1)
+image(x)
+
 
 
