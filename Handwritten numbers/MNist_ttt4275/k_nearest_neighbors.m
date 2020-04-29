@@ -16,7 +16,9 @@ function test_labels = k_nearest_neighbors(template_vectors, template_labels, te
                 min_dist_labels(i,j) = template_labels(min_dist_indices(i,j)-(j-1)*num_templates);
             end
         end
-        test_labels(((chunk_index-1)*test_chunk_size+1):(chunk_index*test_chunk_size)) = mode(min_dist_labels)';
+        for i = 1:test_chunk_size
+            test_labels((chunk_index-1)*test_chunk_size+i) = mode(min_dist_labels(:,i));
+        end
+        %test_labels(((chunk_index-1)*test_chunk_size+1):(chunk_index*test_chunk_size)) = mode(min_dist_labels)';
     end
-
 end

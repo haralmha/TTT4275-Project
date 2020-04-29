@@ -1,5 +1,6 @@
 load('data_all.mat');
 
+k = 7;
 num_clusters = 64;
 num_classes = 10;
 dimensions = 28*28;
@@ -12,7 +13,7 @@ for i = 1:num_classes
     clusters(((i-1)*num_clusters+1):(i*num_clusters),:) = C;
     cluster_labels(((i-1)*num_clusters+1):(i*num_clusters)) = i-1;
 end
-classified_testlab = k_nearest_neighbors(clusters,cluster_labels,testv,7);
+classified_testlab = k_nearest_neighbors(clusters,cluster_labels,testv,k);
 confusion_matrix = zeros(10);
 
 for i = 1:num_test
