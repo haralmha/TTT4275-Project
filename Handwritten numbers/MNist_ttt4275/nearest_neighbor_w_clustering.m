@@ -12,7 +12,7 @@ for i = 1:num_classes
     clusters(((i-1)*num_clusters+1):(i*num_clusters),:) = C;
     cluster_labels(((i-1)*num_clusters+1):(i*num_clusters)) = i-1;
 end
-classified_testlab = nearest_neighbor_cluster(clusters,cluster_labels,testv);
+classified_testlab = k_nearest_neighbors(clusters,cluster_labels,testv,7);
 confusion_matrix = zeros(10);
 
 for i = 1:num_test
