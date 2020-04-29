@@ -8,7 +8,7 @@ use_clustering = true;
 % to classify using the k-nearest-neighbors method
 k = 7;
 
-% Number of classes (0-9 in this exercise)
+% Number of classes (digits 0-9 in this exercise)
 num_classes = 10;
 
 if use_clustering

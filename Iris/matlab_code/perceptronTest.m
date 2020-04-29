@@ -36,14 +36,14 @@ testSamples = totSamples - trainingSamples;
 % testLabels = zeros(3*testSamples,1);
 
 %% Use this for training and testing with 1 feature (3)
-% fprintf('Training and testing using feature 3\n')
-% x1all = [x1all(:,3)];
-% x2all = [x2all(:,3)];
-% x3all = [x3all(:,3)];
-% trainingData = zeros(3*trainingSamples, numFeatures-3);
-% trainingLabels = zeros(3*trainingSamples,1);
-% testData = zeros(3*testSamples, numFeatures-3);
-% testLabels = zeros(3*testSamples,1);
+fprintf('Training and testing using feature 3\n')
+x1all = [x1all(:,3)];
+x2all = [x2all(:,3)];
+x3all = [x3all(:,3)];
+trainingData = zeros(3*trainingSamples, numFeatures-3);
+trainingLabels = zeros(3*trainingSamples,1);
+testData = zeros(3*testSamples, numFeatures-3);
+testLabels = zeros(3*testSamples,1);
 
 %% Training and testing
 for k = 1:1
@@ -99,9 +99,9 @@ for k = 1:1
     % The weights consists of coefficients for three hyperplanes for separating
     % one class from the rest (weights1 separates class 1 from the two others,
     % weights2 separates class 2, and weights 3 separates class 3).
-    weights1 = getPerceptronWeights(trainingData, trainingLabels1);
-    weights2 = getPerceptronWeights(trainingData, trainingLabels2);
-    weights3 = getPerceptronWeights(trainingData, trainingLabels3);
+    [mse_vec1,weights1] = getPerceptronWeights(trainingData, trainingLabels1);
+    [mse_vec2,weights2] = getPerceptronWeights(trainingData, trainingLabels2);
+    [mse_vec3,weights3] = getPerceptronWeights(trainingData, trainingLabels3);
 
     % Classifies the test set based on the features of each test sample and
     % the weight coefficients for the three hyperplanes.
