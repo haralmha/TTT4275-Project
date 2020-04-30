@@ -26,24 +26,24 @@ testSamples = totSamples - trainingSamples;
 % testLabels = zeros(3*testSamples,1);
 
 %% Use this for training and testing with 2 features (3,4)
-% fprintf('Training and testing using feature 3,4\n')
-% x1all = [x1all(:,3) x1all(:,4)];
-% x2all = [x2all(:,3) x2all(:,4)];
-% x3all = [x3all(:,3) x3all(:,4)];
-% trainingData = zeros(3*trainingSamples, numFeatures-2);
-% trainingLabels = zeros(3*trainingSamples,1);
-% testData = zeros(3*testSamples, numFeatures-2);
-% testLabels = zeros(3*testSamples,1);
+fprintf('Training and testing using feature 3,4\n')
+x1all = [x1all(:,3) x1all(:,4)];
+x2all = [x2all(:,3) x2all(:,4)];
+x3all = [x3all(:,3) x3all(:,4)];
+trainingData = zeros(3*trainingSamples, numFeatures-2);
+trainingLabels = zeros(3*trainingSamples,1);
+testData = zeros(3*testSamples, numFeatures-2);
+testLabels = zeros(3*testSamples,1);
 
 %% Use this for training and testing with 1 feature (3)
-fprintf('Training and testing using feature 3\n')
-x1all = [x1all(:,3)];
-x2all = [x2all(:,3)];
-x3all = [x3all(:,3)];
-trainingData = zeros(3*trainingSamples, numFeatures-3);
-trainingLabels = zeros(3*trainingSamples,1);
-testData = zeros(3*testSamples, numFeatures-3);
-testLabels = zeros(3*testSamples,1);
+% fprintf('Training and testing using feature 3\n')
+% x1all = [x1all(:,3)];
+% x2all = [x2all(:,3)];
+% x3all = [x3all(:,3)];
+% trainingData = zeros(3*trainingSamples, numFeatures-3);
+% trainingLabels = zeros(3*trainingSamples,1);
+% testData = zeros(3*testSamples, numFeatures-3);
+% testLabels = zeros(3*testSamples,1);
 
 %% Training and testing
 for k = 1:1
