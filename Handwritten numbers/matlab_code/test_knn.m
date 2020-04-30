@@ -1,5 +1,5 @@
 load('data_all.mat');
-
+tic
 % use_clustering is a boolean value that clusters the data set into num_clusters different
 % clusters if true. Uses the original dataset if false
 use_clustering = true;
@@ -43,3 +43,4 @@ for i = 1:num_classes
     correct = correct + confusion_matrix(i,i);
 end
 fprintf("Correct classifications = %i out of %i\n", correct, size(testlab,1));
+toc
